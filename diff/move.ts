@@ -84,8 +84,8 @@ class MoveDiff {
     }
 }
 
-var a = "abcdeft"
-var b = "acdehl"
+var a = "ABCDEFT"
+var b = "ACDEHL"
 
 let diff = new MoveDiff(a, b)
 let s = new Date().getMilliseconds()

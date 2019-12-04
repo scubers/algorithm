@@ -12,8 +12,8 @@ class ActionNode {
         let s = `${this.index}: ${this.action} ${this.value}\n`
         if (this.parent == undefined) {
             return s
-        } 
-        return this.parent.getDesc() + s        
+        }
+        return this.parent.getDesc() + s
     }
     parent?: ActionNode
 }
@@ -67,7 +67,7 @@ class Diff {
                 if (k == -d) {
                     // 必须从 k + 1 到达
                     lastK = k + 1
-                } else if ( k == d ) {
+                } else if (k == d) {
                     // 必须从 k - 1 到达
                     lastK = k - 1
                 } else {
@@ -102,7 +102,7 @@ class Diff {
                 actions.set(`${x}${y}`, action)
                 var lastAction = action
                 // 如果存在下一个字符相同，则xy都 + 1，形成对角线
-                while ( y < destCount && x < sourceCount && srcArray[x] == destArray[y]) {
+                while (y < destCount && x < sourceCount && srcArray[x] == destArray[y]) {
                     let ac = new ActionNode(" ", destArray[y], lastAction.index + 1)
                     x += 1
                     y += 1
@@ -127,15 +127,15 @@ class Diff {
 
 
         }
-        
+
     }
 
 }
 
 // var src = "ABCABBA"
 // var dest = "CBABAC"
-var src = "ABCABBA"
-var dest = "CBABAC"
+var src = "ABCDEFT"
+var dest = "ACDEHL"
 let start = new Date().getMilliseconds()
 new Diff(src, dest).check()
 let end = new Date().getMilliseconds()
