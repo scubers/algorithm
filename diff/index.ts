@@ -15,6 +15,26 @@ class ActionNode {
         }
         return this.parent.getDesc() + s
     }
+    getCount(): number {
+        if (this.parent == undefined) {
+            return 1
+        }
+        return this.parent.getCount() + 1
+    }
+    getActionCount(): number {
+        var steps = 0
+        if (this.action != " ") {
+            steps += 1
+        }
+        var last = this.parent
+        while (last != undefined) {
+            if (last.action != " ") {
+                steps += 1
+            }
+            last = last.parent
+        }
+        return steps
+    }
     parent?: ActionNode
 }
 
@@ -29,7 +49,12 @@ class Diff {
     // 编辑后
     dest: string
 
-    check() {
+    check(): number {
+
+        if (src == dest) { return 100 }
+
+        var point = 100
+        var modifySteps = 0
 
         let sourceCount = src.length
         let destCount = dest.length
@@ -90,9 +115,11 @@ class Diff {
                 var action: ActionNode
                 if (fromTop) {
                     action = new ActionNode("+", destArray[y], d)
+                    modifySteps += 1
                     y += 1
                 } else {
                     action = new ActionNode("-", srcArray[x], d)
+                    modifySteps += 1
                     x += 1
                 }
                 if (parent != undefined) {
@@ -118,15 +145,20 @@ class Diff {
                 if (y == destCount && x == sourceCount) {
                     // 找到答案
                     console.log(`>>>>>>>>>>>>>>>>>>>>>>>> d: ${d}`)
-                    console.log(actions.get(`${x}${y}`)!.getDesc())
+                    console.log(actions.size)
+                    let total = sourceCount + destCount
+                    console.log(`total: ${total}`)
+                    console.log(`step: ${lastAction.getActionCount()}`)
+                    point = 1 - lastAction.getActionCount() / total
+                    // console.log(actions.get(`${x}${y}`)!.getDesc())
                     // console.log(actions.map((v, a, b) => { return v.getDesc() }).join(","))
                     break out
                 }
 
             }
 
-
         }
+        return point
 
     }
 
@@ -134,9 +166,10 @@ class Diff {
 
 // var src = "ABCABBA"
 // var dest = "CBABAC"
-var src = "ABCDEFT"
-var dest = "ACDEHL"
+var src = "绝对零度～未然犯罪潜入搜查～.Zettai.Reido.Mizen.Hanzai.Sennyu.Sousa.Ep02.Chi_Jap.HDTVrip.1280X720-ZhuixinFanV2.mp4"
+var dest = "绝对零度～未然犯罪潜入搜查～.Zettai.Reido.Mizen.Hanzai.Sennyu.Sousa.Ep04.Chi_Jap.HDTVrip.1280X720-ZhuixinFan.mp4"
 let start = new Date().getMilliseconds()
-new Diff(src, dest).check()
+let point = new Diff(src, dest).check()
 let end = new Date().getMilliseconds()
 console.log(`耗时：${(end - start) / 1000.0}`)
+console.log(`point: ${point}`)

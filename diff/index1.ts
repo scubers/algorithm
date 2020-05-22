@@ -120,6 +120,6 @@ class Diff1 {
 var src = "ABCABBA"
 var dest = "CBABAC"
 let start1 = new Date().getMilliseconds()
-new Diff(src, dest).check()
+new Diff1(src, dest).check()
 let end1 = new Date().getMilliseconds()
-console.log(`耗时：${(end - start) / 1000.0}`)
+console.log(`耗时：${(end1 - start1) / 1000.0}`)

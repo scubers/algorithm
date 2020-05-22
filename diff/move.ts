@@ -76,7 +76,7 @@ class MoveDiff {
         this.src.forEach((v, i, a) => {
             let r = this.getRecord(v)
             let index = r.indexes.pop()!
-            if (index > 0) {
+            if (index >= 0) {
                 // 表示新数据没有，属于删除
                 this.delete.push(new Change(0, i, v))
             }
