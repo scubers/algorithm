@@ -21,7 +21,6 @@ class EditDistance<T> {
       console.log(`========= new loop ========= i = ${i}`);
       /**
        * 令 y = x + b
-       * 内循环，因为斜率为
        */
       for (var b = i; b >= -i; b -= 2) {
         // 超范围的相位差不进行计算
