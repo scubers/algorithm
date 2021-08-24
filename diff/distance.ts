@@ -43,21 +43,10 @@ class EditDistance<T> {
           let x1 = step.get(b1)!;
           let x2 = step.get(b2)!;
 
-          // if (x1 == x2) {
-          //   fromB = b1;
-          // } else {
-          //   let d1 = x1 * x1 + (x1 + b1) * (x1 + b1);
-          //   let d2 = x2 * x2 + (x2 + b2) * (x2 + b2);
-          //   fromB = d2 > d1 ? b2 : b1;
-          // }
-
           if (x1 != x2) {
             fromB = x2 > x1 ? b2 : b1;
           } else {
             fromB = b2;
-            // let d1 = x1 * x1 + (x1 + b1) * (x1 + b1);
-            // let d2 = x2 * x2 + (x2 + b2) * (x2 + b2);
-            // fromB = d2 > d1 ? b2 : b1;
           }
         }
 
@@ -128,21 +117,23 @@ class TestSet {
 }
 
 let testSet: TestSet[] = [
-  new TestSet("abca", "cbab", 50),
-  new TestSet("abcabba", "cbabac", 62),
-  new TestSet("oad", "ae", 40),
-  new TestSet("abc", "abc", 100),
-  new TestSet("abc", "", 0),
-  new TestSet("", "", 100),
-  new TestSet("oad", "ade", 67),
-  new TestSet("i am a good person", "i am one good person", 89),
-  new TestSet("a", "abcdefg", 25),
-  new TestSet("x", "abcdefg", 0),
-  new TestSet("d", "abcdefg", 25),
-  new TestSet("g", "abcdefg", 25),
-  new TestSet("Email address", "Email address *", 93),
-  new TestSet("Name", "Name *", 80),
-  new TestSet("mtacun", "mitcmu", 67),
+  // new TestSet("abca", "cbab", 50),
+  // new TestSet("abcabba", "cbabac", 62),
+  // new TestSet("oad", "ae", 40),
+  // new TestSet("abc", "abc", 100),
+  // new TestSet("abc", "", 0),
+  // new TestSet("", "", 100),
+  // new TestSet("oad", "ade", 67),
+  // new TestSet("i am a good person", "i am one good person", 89),
+  // new TestSet("a", "abcdefg", 25),
+  // new TestSet("x", "abcdefg", 0),
+  // new TestSet("d", "abcdefg", 25),
+  // new TestSet("g", "abcdefg", 25),
+  // new TestSet("Email address", "Email address *", 93),
+  // new TestSet("Name", "Name *", 80),
+  // new TestSet("mtacun", "mitcmu", 67),
+  // new TestSet("ALL", "HOT", 0),
+  new TestSet("Sales", "tctctctctcctctctctctl", 11),
 ];
 // abcabba
 // cbabac
