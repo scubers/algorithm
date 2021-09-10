@@ -1,5 +1,3 @@
-import * as wuzzy from "wuzzy";
-
 class EditDistance<T> {
   constructor(private src: T[], private dest: T[]) {}
 
@@ -118,7 +116,7 @@ class TestSet {
 
 let testSet: TestSet[] = [
   // new TestSet("abca", "cbab", 50),
-  // new TestSet("abcabba", "cbabac", 62),
+  new TestSet("abcabba", "cbabac", 62),
   // new TestSet("oad", "ae", 40),
   // new TestSet("abc", "abc", 100),
   // new TestSet("abc", "", 0),
@@ -133,7 +131,7 @@ let testSet: TestSet[] = [
   // new TestSet("Name", "Name *", 80),
   // new TestSet("mtacun", "mitcmu", 67),
   // new TestSet("ALL", "HOT", 0),
-  new TestSet("Sales", "tctctctctcctctctctctl", 11),
+  // new TestSet("Sales", "tctctctctcctctctctctl", 11),
 ];
 // abcabba
 // cbabac
@@ -142,18 +140,18 @@ testSet.forEach((v, i) => {
   if (result1 != v.result) {
     throw `${i}: [${v.src}  ${v.dest}] = ${result1}, needs ${v.result}`;
   }
-  let result2 = new EditDistance(v.dest.split(""), v.src.split("")).calculate();
-  if (result2 != v.result) {
-    throw `${i} reverse: [${v.dest}  ${v.src}] = ${result2}, needs ${v.result}`;
-  }
+  // let result2 = new EditDistance(v.dest.split(""), v.src.split("")).calculate();
+  // if (result2 != v.result) {
+  //   throw `${i} reverse: [${v.dest}  ${v.src}] = ${result2}, needs ${v.result}`;
+  // }
 
-  let result = wuzzy.levenshtein(v.src, v.dest);
+  // let result = wuzzy.levenshtein(v.src, v.dest);
 
-  console.log(
-    `[${v.src} ${v.dest}] = wuzzy: ${Math.round(result * 100)}, distance: ${
-      v.result
-    }`
-  );
+  // console.log(
+  //   `[${v.src} ${v.dest}] = wuzzy: ${Math.round(result * 100)}, distance: ${
+  //     v.result
+  //   }`
+  // );
 });
 
 function printPath<T>(src: T[], dest: T[], map: Map<number, number>) {

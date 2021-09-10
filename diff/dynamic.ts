@@ -1,5 +1,3 @@
-import { deprecate } from "util";
-
 function calculate(src: string, dest: string): number {
   let listA = src.split("");
   let listB = dest.split("");
